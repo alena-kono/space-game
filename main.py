@@ -33,7 +33,7 @@ async def blink(canvas, row, column, symbol="*"):
 def get_random_star_coordinates():
     window = curses.initscr()
     height, width = window.getmaxyx()
-    return (random.randint(0, height), random.randint(0, width))
+    return (random.randint(0, height - 1), random.randint(0, width - 1))
 
 
 def generate_random_stars(stars_count: int, canvas):
