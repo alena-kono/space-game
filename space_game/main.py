@@ -3,6 +3,9 @@ import curses
 import random
 import time
 
+from space_game.window.coordinates import (get_max_window_coordinates,
+                                           get_middle_window_coordinates)
+
 TIC_TIMEOUT = 0.01
 STAR_SYMBOLS = "+*.:"
 
@@ -35,22 +38,13 @@ async def blink(canvas, row, column, offset_tick_amount, symbol="*"):
             await sleep_for(timeout)
 
 
-def get_window_size():
-    return curses.initscr().getmaxyx()
-
-
-def get_middle_window_coordinates():
-    max_height, max_width = get_window_size()
-    return (max_height // 2, max_width // 2)
-
-
 def get_random_star_coordinates():
-    max_height, max_width = get_window_size()
-    return (random.randint(0, max_height - 1), random.randint(0, max_width - 1))
+    max_height, max_width = get_max_window_coordinates()
+    return (random.randint(0, max_height), random.randint(0, max_width))
 
 
 def calculate_optimal_stars_count():
-    height, width = get_window_size()
+    height, width = get_max_window_coordinates()
     ratio = 125
     return int(height * width / ratio)
 
