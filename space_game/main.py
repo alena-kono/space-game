@@ -1,67 +1,11 @@
 import asyncio
 import curses
-import random
 import time
 
-from space_game.window.coordinates import (get_max_window_coordinates,
-                                           get_middle_window_coordinates)
-
-TIC_TIMEOUT = 0.01
-STAR_SYMBOLS = "+*.:"
-
-
-def generate_animation_states():
-    return [
-      (curses.A_DIM, int(2 / TIC_TIMEOUT)),
-      (curses.A_NORMAL, int(0.3 / TIC_TIMEOUT)),
-      (curses.A_BOLD, int(0.5 / TIC_TIMEOUT)),
-      (curses.A_NORMAL, int(0.3 / TIC_TIMEOUT)),
-    ]
-
-
-async def sleep_for(n_times: int):
-    for _ in range(n_times):
-        await asyncio.sleep(0)
-
-
-async def blink(canvas, row, column, offset_tick_amount, symbol="*"):
-    animation_states = generate_animation_states()
-
-    state, timeout = animation_states[0]
-    canvas.addstr(row, column, symbol, state)
-    await asyncio.sleep(0)
-
-    await sleep_for(offset_tick_amount)
-    while True:
-        for state, timeout in animation_states:
-            canvas.addstr(row, column, symbol, state)
-            await sleep_for(timeout)
-
-
-def get_random_star_coordinates():
-    max_height, max_width = get_max_window_coordinates()
-    return (random.randint(0, max_height), random.randint(0, max_width))
-
-
-def calculate_optimal_stars_count():
-    height, width = get_max_window_coordinates()
-    ratio = 125
-    return int(height * width / ratio)
-
-
-def generate_random_stars(stars_count: int, canvas):
-    stars = []
-    for _ in range(stars_count):
-        row, col = get_random_star_coordinates()
-        star = blink(
-            canvas,
-            row,
-            col,
-            offset_tick_amount=random.randint(1, 200),
-            symbol=random.choice(STAR_SYMBOLS),
-        )
-        stars.append(star)
-    return stars
+from space_game.settings import TIC_TIMEOUT
+from space_game.stars.generator import (calculate_optimal_stars_count,
+                                        generate_random_stars)
+from space_game.window.coordinates import get_middle_window_coordinates
 
 
 async def fire(canvas, start_row, start_column, rows_speed=-0.3, columns_speed=0):
