@@ -12,6 +12,11 @@ async def blink(
     offset_tick_amount: int,
     symbol: str = "*"
 ) -> None:
+    """Display animation of blinking star.
+
+    Coordinates, timeout of blinking and symbol of star
+    can be specified.
+    """
     animation_states = generate_animation_states()
 
     state, timeout = animation_states[0]

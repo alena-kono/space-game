@@ -17,7 +17,6 @@ async def fire(
     columns_speed: float = 0,
 ) -> None:
     """Display animation of gun shot, direction and speed can be specified."""
-
     row, column = float(start_row), float(start_column)
 
     canvas.addstr(round(row), round(column), '*')
@@ -46,6 +45,7 @@ async def fire(
 
 
 def draw(canvas: Any) -> None:
+    """Start and run the space game in the terminal."""
     curses.curs_set(False)
     canvas.border()
     stars_count = calculate_optimal_stars_count()
@@ -72,6 +72,7 @@ def draw(canvas: Any) -> None:
 
 
 def main() -> None:
+    """Initialize curses."""
     curses.update_lines_cols()
     curses.wrapper(draw)
 
