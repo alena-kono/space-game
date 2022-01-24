@@ -1,6 +1,7 @@
 import asyncio
 import curses
 import time
+from typing import Any
 
 from space_game.settings import TIC_TIMEOUT
 from space_game.stars.generator import (calculate_optimal_stars_count,
@@ -8,10 +9,16 @@ from space_game.stars.generator import (calculate_optimal_stars_count,
 from space_game.window.coordinates import get_middle_window_coordinates
 
 
-async def fire(canvas, start_row, start_column, rows_speed=-0.3, columns_speed=0):
+async def fire(
+    canvas: Any,
+    start_row: int,
+    start_column: int,
+    rows_speed: float = -0.3,
+    columns_speed: float = 0,
+) -> None:
     """Display animation of gun shot, direction and speed can be specified."""
 
-    row, column = start_row, start_column
+    row, column = float(start_row), float(start_column)
 
     canvas.addstr(round(row), round(column), '*')
     await asyncio.sleep(0)
@@ -38,12 +45,15 @@ async def fire(canvas, start_row, start_column, rows_speed=-0.3, columns_speed=0
         column += columns_speed
 
 
-def draw(canvas):
+def draw(canvas: Any) -> None:
     curses.curs_set(False)
     canvas.border()
     stars_count = calculate_optimal_stars_count()
 
-    space_objects = generate_random_stars(stars_count=stars_count, canvas=canvas)
+    space_objects = generate_random_stars(
+        stars_count=stars_count,
+        canvas=canvas,
+    )
     space_objects.append(fire(canvas, *get_middle_window_coordinates()))
 
     while True:
@@ -61,7 +71,7 @@ def draw(canvas):
             space_objects.remove(coroutine)
 
 
-def main():
+def main() -> None:
     curses.update_lines_cols()
     curses.wrapper(draw)
 

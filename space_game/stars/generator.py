@@ -1,12 +1,13 @@
 import curses
 import random
+from typing import Any, Coroutine, List, Tuple
 
 from space_game.settings import STAR_SYMBOLS, TIC_TIMEOUT
 from space_game.stars.blink import blink
 from space_game.window.coordinates import get_max_window_coordinates
 
 
-def generate_animation_states():
+def generate_animation_states() -> List[Tuple[int, int]]:
     return [
       (curses.A_DIM, int(2 / TIC_TIMEOUT)),
       (curses.A_NORMAL, int(0.3 / TIC_TIMEOUT)),
@@ -15,18 +16,21 @@ def generate_animation_states():
     ]
 
 
-def get_random_star_coordinates():
+def get_random_star_coordinates() -> Tuple[int, int]:
     max_height, max_width = get_max_window_coordinates()
     return (random.randint(0, max_height), random.randint(0, max_width))
 
 
-def calculate_optimal_stars_count():
+def calculate_optimal_stars_count() -> int:
     height, width = get_max_window_coordinates()
     ratio = 125
     return int(height * width / ratio)
 
 
-def generate_random_stars(stars_count: int, canvas):
+def generate_random_stars(
+    stars_count: int,
+    canvas: Any
+) -> List[Coroutine[Any, Any, None]]:
     stars = []
     for _ in range(stars_count):
         row, col = get_random_star_coordinates()

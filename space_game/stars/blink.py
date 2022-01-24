@@ -1,10 +1,17 @@
 import asyncio
+from typing import Any
 
 from space_game.stars.generator import generate_animation_states
 from space_game.utilities.async_tools import sleep_for
 
 
-async def blink(canvas, row, column, offset_tick_amount, symbol="*"):
+async def blink(
+    canvas: Any,
+    row: int,
+    column: int,
+    offset_tick_amount: int,
+    symbol: str = "*"
+) -> None:
     animation_states = generate_animation_states()
 
     state, timeout = animation_states[0]
