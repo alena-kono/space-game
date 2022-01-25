@@ -1,20 +1,9 @@
-import curses
 import random
 from typing import Any, Coroutine, List, Tuple
 
-from space_game.settings import STAR_SYMBOLS, TIC_TIMEOUT
+from space_game.settings import STAR_SYMBOLS
 from space_game.stars.blink import blink
 from space_game.window.coordinates import get_max_window_coordinates
-
-
-def generate_animation_states() -> List[Tuple[int, int]]:
-    """Generate brightness and offset timeout of star animation."""
-    return [
-      (curses.A_DIM, int(2 / TIC_TIMEOUT)),
-      (curses.A_NORMAL, int(0.3 / TIC_TIMEOUT)),
-      (curses.A_BOLD, int(0.5 / TIC_TIMEOUT)),
-      (curses.A_NORMAL, int(0.3 / TIC_TIMEOUT)),
-    ]
 
 
 def get_random_star_coordinates() -> Tuple[int, int]:

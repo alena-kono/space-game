@@ -1,7 +1,8 @@
 import asyncio
-from typing import Any
+import curses
+from typing import Any, List, Tuple
 
-from space_game.stars.generator import generate_animation_states
+from space_game.settings import TIC_TIMEOUT
 from space_game.utilities.async_tools import sleep_for
 
 
@@ -28,3 +29,13 @@ async def blink(
         for state, timeout in animation_states:
             canvas.addstr(row, column, symbol, state)
             await sleep_for(timeout)
+
+
+def generate_animation_states() -> List[Tuple[int, int]]:
+    """Generate brightness and offset timeout of star animation."""
+    return [
+      (curses.A_DIM, int(2 / TIC_TIMEOUT)),
+      (curses.A_NORMAL, int(0.3 / TIC_TIMEOUT)),
+      (curses.A_BOLD, int(0.5 / TIC_TIMEOUT)),
+      (curses.A_NORMAL, int(0.3 / TIC_TIMEOUT)),
+    ]
