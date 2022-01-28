@@ -4,6 +4,7 @@ import time
 from typing import Any
 
 from space_game.settings import TIC_TIMEOUT
+from space_game.spaceship.animate import animate_spaceship
 from space_game.stars.generator import (calculate_optimal_stars_count,
                                         generate_random_stars)
 from space_game.window.coordinates import get_middle_window_coordinates
@@ -54,7 +55,8 @@ def draw(canvas: Any) -> None:
         stars_count=stars_count,
         canvas=canvas,
     )
-    space_objects.append(fire(canvas, *get_middle_window_coordinates()))
+    row, col = get_middle_window_coordinates()
+    space_objects.append(animate_spaceship(canvas, row, col))
 
     while True:
         exhausted_coroutines = []
