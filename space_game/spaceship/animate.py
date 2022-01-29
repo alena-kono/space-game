@@ -1,8 +1,9 @@
 import asyncio
 import curses
 import itertools
-from typing import Any
+from typing import Any, Tuple
 
+from space_game.settings import DEBUG, SPEED, SPEED_DEBUG
 from space_game.spaceship.get_frames import get_spaceship_frames
 from space_game.utilities.async_tools import sleep_for
 from space_game.window.controls import read_controls
@@ -19,8 +20,16 @@ async def run_spaceship(canvas: Any) -> None:
     while True:
         tmp_spaceship = spaceship
         row_change, column_change = read_controls(canvas)[:2]
-        row += row_change
-        column += column_change
+        if DEBUG:
+            speed = SPEED_DEBUG
+        else:
+            speed = SPEED
+        row_change, column_change = change_speed(
+            increment=speed,
+            row=row_change,
+            column=column_change,
+        )
+        row, column = row + row_change, column + column_change
         draw_frame(canvas, row, column, tmp_spaceship)
         await sleep_for(1)
         draw_frame(canvas, row, column, tmp_spaceship, negative=True)
@@ -33,6 +42,11 @@ async def animate_spaceship() -> None:
     for state in itertools.cycle(animation_states):
         spaceship = state
         await sleep_for(2)
+
+
+def change_speed(increment: int, row: int, column: int) -> Tuple[int, int]:
+    """Change speed by increment and return updated row and column."""
+    return row * increment, column * increment
 
 
 async def fire(
