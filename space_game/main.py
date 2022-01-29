@@ -49,6 +49,8 @@ def draw(canvas: Any) -> None:
     """Start and run the space game in the terminal."""
     curses.curs_set(False)
     canvas.border()
+    canvas.nodelay(True)
+
     stars_count = calculate_optimal_stars_count()
 
     space_objects = generate_random_stars(

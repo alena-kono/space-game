@@ -1,5 +1,5 @@
 # Stars
-TIC_TIMEOUT = 0.01
+TIC_TIMEOUT = 0.1
 STAR_SYMBOLS = "+*.:"
 
 
