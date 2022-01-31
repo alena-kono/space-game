@@ -1,4 +1,6 @@
-from typing import Any
+from typing import Any, Tuple
+
+from space_game.window.coordinates import get_window_available_coordinates
 
 
 def draw_frame(
@@ -39,3 +41,43 @@ def draw_frame(
 
             symbol = symbol if not negative else " "
             canvas.addch(row, column, symbol)
+
+
+def get_frame_size(text: str) -> Tuple[int, int]:
+    """Calculate size of multiline text fragment,
+    return pair — number of rows and columns.
+    """
+    lines = text.splitlines()
+    rows = len(lines)
+    columns = max([len(line) for line in lines])
+    return rows, columns
+
+
+def calculate_frame_coordinates(
+        frame: str,
+        start_row: int,
+        start_column: int,
+        row_change: int,
+        column_change: int,
+) -> Tuple[int, int]:
+    """Calculate new frame coordinates based on its start and increment
+    coordinates and coordinates of available canvas.
+    """
+    row, column = start_row + row_change, start_column + column_change
+    (
+        min_row,
+        min_column,
+        max_row,
+        max_column
+    ) = get_window_available_coordinates()
+    frame_rows_amount, frame_columns_amount = get_frame_size(frame)
+
+    updated_row = min(
+            max(row, min_row),
+            max_row - frame_rows_amount,
+        )
+    updated_column = min(
+            max(column, min_column),
+            max_column - frame_columns_amount,
+        )
+    return updated_row, updated_column

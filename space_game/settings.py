@@ -17,3 +17,6 @@ SPACESHIP_FRAME_0_FILENAME = "space_game/static/rocket_frame_0.txt"
 SPACESHIP_FRAME_1_FILENAME = "space_game/static/rocket_frame_1.txt"
 SPEED = 1
 SPEED_DEBUG = 10
+
+# Canvas
+CANVAS_BORDER_SIZE = 1
