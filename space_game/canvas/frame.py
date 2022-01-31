@@ -1,6 +1,6 @@
 from typing import Any, Tuple
 
-from space_game.window.coordinates import get_window_available_coordinates
+from space_game.canvas.coordinates import get_canvas_available_coordinates
 
 
 def draw_frame(
@@ -33,7 +33,7 @@ def draw_frame(
                 continue
 
             # Check that current position it is not in a lower right
-            # corner of the window
+            # corner of the canvas
             # Curses will raise exception in that case. Don`t ask why…
             # https://docs.python.org/3/library/curses.html#curses.window.addch
             if row == rows_number - 1 and column == columns_number - 1:
@@ -69,7 +69,7 @@ def calculate_frame_coordinates(
         min_column,
         max_row,
         max_column
-    ) = get_window_available_coordinates()
+    ) = get_canvas_available_coordinates()
     frame_rows_amount, frame_columns_amount = get_frame_size(frame)
 
     updated_row = min(

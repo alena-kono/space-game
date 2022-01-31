@@ -6,9 +6,9 @@ from typing import Any, Tuple
 from space_game.settings import DEBUG, SPEED, SPEED_DEBUG
 from space_game.spaceship.get_frames import get_spaceship_frames
 from space_game.utilities.async_tools import sleep_for
-from space_game.window.controls import read_controls
-from space_game.window.coordinates import get_middle_window_coordinates
-from space_game.window.frame import draw_frame, calculate_frame_coordinates
+from space_game.canvas.controls import read_controls
+from space_game.canvas.coordinates import get_middle_window_coordinates
+from space_game.canvas.frame import draw_frame, calculate_frame_coordinates
 
 # Globals
 spaceship = ""
