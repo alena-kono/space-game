@@ -1,4 +1,6 @@
 # Space Game
+[![Status](https://github.com/alena-kono/space-game/actions/workflows/ci.yml/badge.svg)](https://github.com/alena-kono/space-game/actions/workflows/ci.yml)
+
 Simple console game where you can fly through space by controlling your own spaceship.
 
 ## Purpose of this project
