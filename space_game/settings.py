@@ -4,6 +4,7 @@ DEBUG = True
 # Stars
 TIC_TIMEOUT = 0.1
 STAR_SYMBOLS = "+*.:"
+STARS_DENSITY = 0.05
 
 # Control keys
 SPACE_KEY_CODE = 32

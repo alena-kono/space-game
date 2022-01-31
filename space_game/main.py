@@ -2,9 +2,9 @@ import curses
 import time
 from typing import Any
 
-from space_game.settings import CURSOR_STATE, TIC_TIMEOUT
+from space_game.settings import CURSOR_STATE, STARS_DENSITY, TIC_TIMEOUT
 from space_game.spaceship.animate import animate_spaceship, run_spaceship
-from space_game.stars.generator import (calculate_optimal_stars_count,
+from space_game.stars.generator import (calculate_stars_amount,
                                         generate_random_stars)
 
 
@@ -14,7 +14,7 @@ def draw(canvas: Any) -> None:
     canvas.border()
     canvas.nodelay(True)
 
-    stars_count = calculate_optimal_stars_count()
+    stars_count = calculate_stars_amount(density=STARS_DENSITY)
 
     space_objects = generate_random_stars(
         stars_count=stars_count,

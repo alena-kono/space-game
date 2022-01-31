@@ -12,13 +12,12 @@ def get_random_star_coordinates() -> Tuple[int, int]:
     return random.randint(0, max_height), random.randint(0, max_width)
 
 
-def calculate_optimal_stars_count() -> int:
-    """Calculate amount of stars that is optimal for
-    the current canvas area.
+def calculate_stars_amount(density: float = 0.05) -> int:
+    """Calculate amount of stars based on density per
+    1 row x 1 column square for the current canvas.
     """
     height, width = get_max_allowed_canvas_coordinates()
-    ratio = 125
-    return int(height * width / ratio)
+    return int(height * width * density)
 
 
 def generate_random_stars(
