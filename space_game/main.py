@@ -2,7 +2,7 @@ import curses
 import time
 from typing import Any
 
-from space_game.settings import TIC_TIMEOUT
+from space_game.settings import CURSOR_STATE, TIC_TIMEOUT
 from space_game.spaceship.animate import animate_spaceship, run_spaceship
 from space_game.stars.generator import (calculate_optimal_stars_count,
                                         generate_random_stars)
@@ -10,7 +10,7 @@ from space_game.stars.generator import (calculate_optimal_stars_count,
 
 def draw(canvas: Any) -> None:
     """Start and run the space game in the terminal."""
-    curses.curs_set(False)
+    curses.curs_set(CURSOR_STATE)
     canvas.border()
     canvas.nodelay(True)
 
