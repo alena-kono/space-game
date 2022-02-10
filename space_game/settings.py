@@ -14,8 +14,7 @@ UP_KEY_CODE = 259
 DOWN_KEY_CODE = 258
 
 # Spaceship
-SPACESHIP_FRAME_0_FILENAME = "space_game/static/rocket_frame_0.txt"
-SPACESHIP_FRAME_1_FILENAME = "space_game/static/rocket_frame_1.txt"
+SPACESHIP_FRAMES_DIR = "space_game/static/spaceship"
 SPEED = 1
 SPEED_DEBUG = 10
 

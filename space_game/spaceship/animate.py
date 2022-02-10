@@ -3,12 +3,11 @@ import curses
 import itertools
 from typing import Any, Tuple
 
-from space_game.settings import DEBUG, SPEED, SPEED_DEBUG
-from space_game.spaceship.get_frames import get_spaceship_frames
+from space_game.settings import DEBUG, SPACESHIP_FRAMES_DIR, SPEED, SPEED_DEBUG
 from space_game.utilities.async_tools import sleep_for
 from space_game.canvas.controls import read_controls
 from space_game.canvas.coordinates import get_middle_window_coordinates
-from space_game.canvas.frame import draw_frame, calculate_frame_coordinates
+from space_game.canvas.frame import draw_frame, calculate_frame_coordinates, get_frames_from_dir
 
 # Globals
 spaceship = ""
@@ -45,7 +44,7 @@ async def run_spaceship(canvas: Any) -> None:
 
 async def animate_spaceship() -> None:
     """Display animation of flying spaceship."""
-    animation_states = get_spaceship_frames()
+    animation_states = get_frames_from_dir(SPACESHIP_FRAMES_DIR)
     global spaceship
     for state in itertools.cycle(animation_states):
         spaceship = state

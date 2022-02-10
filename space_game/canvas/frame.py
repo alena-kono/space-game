@@ -1,6 +1,9 @@
-from typing import Any, Tuple, Union
+import os
+
+from typing import Any, List, Tuple, Union
 
 from space_game.canvas.coordinates import get_canvas_available_coordinates
+from space_game.utilities.read_file import read_file
 
 
 def draw_frame(
@@ -41,6 +44,16 @@ def draw_frame(
 
             symbol = symbol if not negative else " "
             canvas.addch(row, column, symbol)
+
+
+def get_frames_from_dir(dir_path: str) -> List[str]:
+    """Read frames from files located in the directory
+    specified at dir_path.
+    """
+    files = os.listdir(dir_path)
+    return [
+            read_file(dir_path + "/" + input_file) for input_file in files
+            ]
 
 
 def get_frame_size(text: str) -> Tuple[int, int]:
