@@ -1,15 +1,11 @@
 import random
-from typing import Any, Coroutine, List, Tuple
+from typing import Any, Coroutine, List
 
 from space_game.settings import STAR_SYMBOLS
 from space_game.stars.blink import blink
-from space_game.canvas.coordinates import get_max_allowed_canvas_coordinates
-
-
-def get_random_star_coordinates() -> Tuple[int, int]:
-    """Generate random coordinates of a star."""
-    max_height, max_width = get_max_allowed_canvas_coordinates()
-    return random.randint(0, max_height), random.randint(0, max_width)
+from space_game.canvas.coordinates import (
+        get_max_allowed_canvas_coordinates,
+        get_random_coordinates)
 
 
 def calculate_stars_amount(density: float = 0.05) -> int:
@@ -27,7 +23,7 @@ def generate_random_stars(
     """Generate blinking stars with random coordinates and offset timeout."""
     stars = []
     for _ in range(stars_count):
-        row, col = get_random_star_coordinates()
+        row, col = get_random_coordinates()
         star = blink(
             canvas,
             row,
