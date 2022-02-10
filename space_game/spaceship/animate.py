@@ -3,6 +3,7 @@ import curses
 import itertools
 from typing import Any, Tuple
 
+from space_game.global_objects import spaceship
 from space_game.settings import (
         DEBUG,
         SPACESHIP_FRAMES_DIR,
@@ -15,9 +16,6 @@ from space_game.canvas.frame import (
         draw_frame,
         calculate_frame_coordinates,
         get_frames_from_dir)
-
-# Globals
-spaceship = ""
 
 
 async def run_spaceship(canvas: Any) -> None:
