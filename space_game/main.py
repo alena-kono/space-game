@@ -1,12 +1,12 @@
 import curses
 import time
 from typing import Any
+from space_game.canvas.frame import get_frames_from_dir
 
 from space_game.global_objects import space_objects
 from space_game.garbage.generator import fill_orbit_with_garbage
-from space_game.garbage.get_frames import get_garbage_frames
 
-from space_game.settings import CURSOR_STATE, STARS_DENSITY, TIC_TIMEOUT
+from space_game.settings import CURSOR_STATE, GARBAGE_DIR, STARS_DENSITY, TIC_TIMEOUT
 from space_game.spaceship.animate import animate_spaceship, run_spaceship
 from space_game.stars.generator import (
         calculate_stars_amount,
@@ -25,7 +25,7 @@ def draw(canvas: Any) -> None:
         stars_count=stars_count,
         canvas=canvas,
     ))
-    garbage_frames = get_garbage_frames()
+    garbage_frames = get_frames_from_dir(GARBAGE_DIR)
 
     space_objects.append(animate_spaceship())
     space_objects.append(run_spaceship(canvas))
