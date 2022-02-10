@@ -1,12 +1,12 @@
-from typing import Any, Tuple
+from typing import Any, Tuple, Union
 
 from space_game.canvas.coordinates import get_canvas_available_coordinates
 
 
 def draw_frame(
     canvas: Any,
-    start_row: int,
-    start_column: int,
+    start_row: Union[int, float],
+    start_column: Union[int, float],
     text: str,
     negative: bool = False,
 ) -> None:
