@@ -6,7 +6,11 @@ from space_game.canvas.frame import get_frames_from_dir
 from space_game.global_objects import space_objects
 from space_game.garbage.generator import fill_orbit_with_garbage
 
-from space_game.settings import CURSOR_STATE, GARBAGE_DIR, STARS_DENSITY, TIC_TIMEOUT
+from space_game.settings import (
+        CURSOR_STATE,
+        GARBAGE_DIR,
+        STARS_DENSITY,
+        TIC_TIMEOUT)
 from space_game.spaceship.animate import animate_spaceship, run_spaceship
 from space_game.stars.generator import (
         calculate_stars_amount,

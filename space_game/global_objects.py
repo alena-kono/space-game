@@ -1,4 +1,4 @@
-from typing import Coroutine, List
+from typing import Any, Coroutine, List
 
 
-space_objects: List[Coroutine] = []
+space_objects: List[Coroutine[Any, Any, None]] = []

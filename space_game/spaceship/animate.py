@@ -3,11 +3,18 @@ import curses
 import itertools
 from typing import Any, Tuple
 
-from space_game.settings import DEBUG, SPACESHIP_FRAMES_DIR, SPEED, SPEED_DEBUG
+from space_game.settings import (
+        DEBUG,
+        SPACESHIP_FRAMES_DIR,
+        SPEED,
+        SPEED_DEBUG)
 from space_game.utilities.async_tools import sleep_for
 from space_game.canvas.controls import read_controls
 from space_game.canvas.coordinates import get_middle_window_coordinates
-from space_game.canvas.frame import draw_frame, calculate_frame_coordinates, get_frames_from_dir
+from space_game.canvas.frame import (
+        draw_frame,
+        calculate_frame_coordinates,
+        get_frames_from_dir)
 
 # Globals
 spaceship = ""
