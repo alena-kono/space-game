@@ -19,6 +19,9 @@ SPACESHIP_FRAME_1_FILENAME = "space_game/static/rocket_frame_1.txt"
 SPEED = 1
 SPEED_DEBUG = 10
 
+# Garbage
+GARBAGE_DIR = "space_game/static/garbage"
+
 # Canvas
 CURSOR_STATE = False
 CANVAS_BORDER_SIZE = 1

@@ -1,4 +1,5 @@
 import curses
+import random
 from typing import Tuple
 
 from space_game.settings import CANVAS_BORDER_SIZE
@@ -49,4 +50,13 @@ def get_canvas_available_coordinates() -> Tuple[int, int, int, int]:
             min_column + CANVAS_BORDER_SIZE,
             max_row - CANVAS_BORDER_SIZE,
             max_column - CANVAS_BORDER_SIZE,
+        )
+
+
+def get_random_coordinates() -> Tuple[int, int]:
+    """Get random row and column coordinates."""
+    max_row, max_column = get_max_allowed_canvas_coordinates()
+    return (
+            random.randint(CANVAS_BORDER_SIZE, max_row),
+            random.randint(CANVAS_BORDER_SIZE, max_column),
         )

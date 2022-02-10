@@ -2,10 +2,15 @@ import curses
 import time
 from typing import Any
 
+from space_game.global_objects import space_objects
+from space_game.garbage.generator import fill_orbit_with_garbage
+from space_game.garbage.get_frames import get_garbage_frames
+
 from space_game.settings import CURSOR_STATE, STARS_DENSITY, TIC_TIMEOUT
 from space_game.spaceship.animate import animate_spaceship, run_spaceship
-from space_game.stars.generator import (calculate_stars_amount,
-                                        generate_random_stars)
+from space_game.stars.generator import (
+        calculate_stars_amount,
+        generate_random_stars)
 
 
 def draw(canvas: Any) -> None:
@@ -16,12 +21,15 @@ def draw(canvas: Any) -> None:
 
     stars_count = calculate_stars_amount(density=STARS_DENSITY)
 
-    space_objects = generate_random_stars(
+    space_objects.extend(generate_random_stars(
         stars_count=stars_count,
         canvas=canvas,
-    )
+    ))
+    garbage_frames = get_garbage_frames()
+
     space_objects.append(animate_spaceship())
     space_objects.append(run_spaceship(canvas))
+    space_objects.append(fill_orbit_with_garbage(canvas, garbage_frames))
 
     while True:
         exhausted_coroutines = []
