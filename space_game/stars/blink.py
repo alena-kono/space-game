@@ -22,7 +22,6 @@ async def blink(
     animation_states = generate_animation_states()
     state, timeout = animation_states[0]
 
-    row, column = int(row), int(column)
     canvas.addstr(row, column, symbol, state)
     await asyncio.sleep(0)
 

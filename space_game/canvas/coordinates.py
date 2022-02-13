@@ -61,8 +61,7 @@ def get_canvas_available_coordinates() -> RectangleCoordinates:
 def get_random_coordinates() -> Coordinates:
     """Get random row and column coordinates."""
     max_row, max_column = get_max_allowed_canvas_coordinates()
-    row = random.randint(CANVAS_BORDER_SIZE, int(max_row)) * random.random()
-    column = random.randint(
-            CANVAS_BORDER_SIZE, int(max_column)
-            ) * random.random()
-    return row, column
+    return (
+            random.randint(CANVAS_BORDER_SIZE, int(max_row)),
+            random.randint(CANVAS_BORDER_SIZE, int(max_column)),
+            )
