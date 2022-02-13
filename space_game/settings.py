@@ -1,5 +1,5 @@
 # Debug mode
-DEBUG = False
+DEBUG = True
 
 # Stars
 TIC_TIMEOUT = 0.1

@@ -3,7 +3,9 @@ from typing import Any
 
 from space_game.canvas.coordinates import (Coordinate,
                                            get_max_allowed_canvas_coordinates)
-from space_game.canvas.frame import draw_frame
+from space_game.canvas.frame import draw_frame, get_frame_size
+from space_game.global_objects import obstacles
+from space_game.obstacles.obstacles import Obstacle
 from space_game.spaceship.physics import Speed
 
 
@@ -21,10 +23,17 @@ async def fly_garbage(
     column = max(column, 0)
     column = min(column, columns_number - 1)
 
-    row: float = 0
+    row: Coordinate = 0
 
     while row < rows_number:
+        rows_size, columns_size = get_frame_size(garbage_frame)
+        obstacle = Obstacle(row, column, rows_size, columns_size)
+        obstacles.append(obstacle)
+
         draw_frame(canvas, row, column, garbage_frame)
+
         await asyncio.sleep(0)
         draw_frame(canvas, row, column, garbage_frame, negative=True)
         row += speed
+
+        obstacles.remove(obstacle)
