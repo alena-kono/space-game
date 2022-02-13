@@ -36,7 +36,6 @@ async def run_spaceship(canvas: Any) -> None:
                 row,
                 column,
                 )
-        print(row, column)
         draw_frame(canvas, row, column, tmp_spaceship)
         await sleep_for(1)
         draw_frame(canvas, row, column, tmp_spaceship, negative=True)
