@@ -94,3 +94,14 @@ def calculate_frame_coordinates(
             max_column - frame_columns_amount,
         )
     return updated_row, updated_column
+
+
+def get_middle_frame_column_coordinate(
+        start_column: Coordinate,
+        frame: str,
+) -> Coordinate:
+    """Get coordinate which represents middle point of
+    frame at the column axis.
+    """
+    frame_columns = get_frame_size(frame)[1]
+    return start_column + frame_columns / 2

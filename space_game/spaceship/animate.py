@@ -3,16 +3,19 @@ import curses
 import itertools
 from typing import Any
 
-from space_game.global_objects import spaceship
+from space_game.global_objects import spaceship, space_objects
 from space_game.settings import SPACESHIP_FRAMES_DIR
 from space_game.spaceship.physics import Speed, update_speed
 from space_game.utilities.async_tools import sleep_for
 from space_game.canvas.controls import read_controls
-from space_game.canvas.coordinates import get_middle_window_coordinates
+from space_game.canvas.coordinates import (
+        Coordinate,
+        get_middle_window_coordinates)
 from space_game.canvas.frame import (
         draw_frame,
         calculate_frame_coordinates,
-        get_frames_from_dir)
+        get_frames_from_dir,
+        get_middle_frame_column_coordinate)
 
 
 async def run_spaceship(canvas: Any) -> None:
@@ -22,8 +25,7 @@ async def run_spaceship(canvas: Any) -> None:
     column_speed: Speed = 0
     while True:
         tmp_spaceship = spaceship
-        # Read only arrow keys controls.
-        row_direction, column_direction = read_controls(canvas)[:2]
+        row_direction, column_direction, fire_shot = read_controls(canvas)
         row_speed, column_speed = update_speed(
                 row_speed,
                 column_speed,
@@ -36,6 +38,13 @@ async def run_spaceship(canvas: Any) -> None:
                 row,
                 column,
                 )
+        if fire_shot:
+            fire_gun_column = get_middle_frame_column_coordinate(
+                    column,
+                    tmp_spaceship
+                    )
+            space_objects.append(fire(canvas, row, fire_gun_column))
+
         draw_frame(canvas, row, column, tmp_spaceship)
         await sleep_for(1)
         draw_frame(canvas, row, column, tmp_spaceship, negative=True)
@@ -52,10 +61,10 @@ async def animate_spaceship() -> None:
 
 async def fire(
     canvas: Any,
-    start_row: int,
-    start_column: int,
-    rows_speed: float = -0.3,
-    columns_speed: float = 0,
+    start_row: Coordinate,
+    start_column: Coordinate,
+    rows_speed: Speed = -0.3,
+    columns_speed: Speed = 0,
 ) -> None:
     """Display animation of gun shot, direction and speed can be specified."""
     row, column = float(start_row), float(start_column)
