@@ -8,9 +8,7 @@ from space_game.settings import SPACESHIP_FRAMES_DIR
 from space_game.spaceship.physics import Speed, update_speed
 from space_game.utilities.async_tools import sleep_for
 from space_game.canvas.controls import read_controls
-from space_game.canvas.coordinates import (
-        Coordinate,
-        get_middle_window_coordinates)
+from space_game.canvas.coordinates import get_middle_window_coordinates
 from space_game.canvas.frame import (
         draw_frame,
         calculate_frame_coordinates,
