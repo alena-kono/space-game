@@ -19,8 +19,6 @@ from space_game.canvas.frame import (
 
 async def run_spaceship(canvas: Any) -> None:
     """Run spaceship."""
-    row: Coordinate = 0
-    column: Coordinate = 0
     row, column = get_middle_window_coordinates()
     row_speed: Speed = 0
     column_speed: Speed = 0
