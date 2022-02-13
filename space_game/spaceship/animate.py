@@ -5,10 +5,12 @@ from typing import Any
 
 from space_game.global_objects import spaceship
 from space_game.settings import SPACESHIP_FRAMES_DIR
-from space_game.spaceship.physics import update_speed
+from space_game.spaceship.physics import Speed, update_speed
 from space_game.utilities.async_tools import sleep_for
 from space_game.canvas.controls import read_controls
-from space_game.canvas.coordinates import get_middle_window_coordinates
+from space_game.canvas.coordinates import (
+        Coordinate,
+        get_middle_window_coordinates)
 from space_game.canvas.frame import (
         draw_frame,
         calculate_frame_coordinates,
@@ -17,8 +19,11 @@ from space_game.canvas.frame import (
 
 async def run_spaceship(canvas: Any) -> None:
     """Run spaceship."""
+    row: Coordinate = 0
+    column: Coordinate = 0
     row, column = get_middle_window_coordinates()
-    row_speed, column_speed = 0, 0
+    row_speed: Speed = 0
+    column_speed: Speed = 0
     while True:
         tmp_spaceship = spaceship
         # Read only arrow keys controls.
@@ -35,6 +40,7 @@ async def run_spaceship(canvas: Any) -> None:
                 row,
                 column,
                 )
+        print(row, column)
         draw_frame(canvas, row, column, tmp_spaceship)
         await sleep_for(1)
         draw_frame(canvas, row, column, tmp_spaceship, negative=True)

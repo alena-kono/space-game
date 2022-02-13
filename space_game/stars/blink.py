@@ -1,6 +1,7 @@
 import asyncio
 import curses
 from typing import Any, List, Tuple
+from space_game.canvas.coordinates import Coordinate
 
 from space_game.settings import TIC_TIMEOUT
 from space_game.utilities.async_tools import sleep_for
@@ -8,8 +9,8 @@ from space_game.utilities.async_tools import sleep_for
 
 async def blink(
     canvas: Any,
-    row: int,
-    column: int,
+    row: Coordinate,
+    column: Coordinate,
     offset_tick_amount: int,
     symbol: str = "*"
 ) -> None:

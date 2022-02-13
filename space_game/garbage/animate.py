@@ -1,15 +1,18 @@
 import asyncio
 from typing import Any
-from space_game.canvas.coordinates import get_max_allowed_canvas_coordinates
+from space_game.canvas.coordinates import (
+        Coordinate,
+        get_max_allowed_canvas_coordinates)
 
 from space_game.canvas.frame import draw_frame
+from space_game.spaceship.physics import Speed
 
 
 async def fly_garbage(
     canvas: Any,
-    column: int,
+    column: Coordinate,
     garbage_frame: str,
-    speed: float = 0.5,
+    speed: Speed = 0.5,
 ) -> None:
     """Animate garbage, flying from top to bottom. Сolumn position
     will stay same, as specified on start.

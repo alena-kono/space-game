@@ -2,14 +2,17 @@ import os
 
 from typing import Any, List, Tuple, Union
 
-from space_game.canvas.coordinates import get_canvas_available_coordinates
+from space_game.canvas.coordinates import (
+        Coordinate,
+        Coordinates,
+        get_canvas_available_coordinates)
 from space_game.utilities.read_file import read_file
 
 
 def draw_frame(
     canvas: Any,
-    start_row: Union[int, float],
-    start_column: Union[int, float],
+    start_row: Coordinate,
+    start_column: Coordinate,
     text: str,
     negative: bool = False,
 ) -> None:
@@ -70,7 +73,7 @@ def calculate_frame_coordinates(
         frame: str,
         row: Union[int, float],
         column: Union[int, float],
-) -> Tuple[int, int]:
+) -> Coordinates:
     """Calculate new frame coordinates based on its
     coordinates and coordinates of available canvas.
     """
