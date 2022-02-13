@@ -1,8 +1,8 @@
 import asyncio
 import curses
 from typing import Any, List, Tuple
-from space_game.canvas.coordinates import Coordinate
 
+from space_game.canvas.coordinates import Coordinate
 from space_game.settings import TIC_TIMEOUT
 from space_game.utilities.async_tools import sleep_for
 

@@ -4,7 +4,6 @@ from typing import Tuple, Union
 
 from space_game.settings import CANVAS_BORDER_SIZE
 
-
 Coordinate = Union[int, float]
 Coordinates = Tuple[Coordinate, Coordinate]
 RectangleCoordinates = Tuple[Coordinate, Coordinate, Coordinate, Coordinate]

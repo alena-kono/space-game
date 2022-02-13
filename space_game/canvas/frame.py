@@ -1,11 +1,8 @@
 import os
-
 from typing import Any, List, Tuple, Union
 
-from space_game.canvas.coordinates import (
-        Coordinate,
-        Coordinates,
-        get_canvas_available_coordinates)
+from space_game.canvas.coordinates import (Coordinate, Coordinates,
+                                           get_canvas_available_coordinates)
 from space_game.utilities.read_file import read_file
 
 

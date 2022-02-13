@@ -1,9 +1,8 @@
 import asyncio
 from typing import Any
-from space_game.canvas.coordinates import (
-        Coordinate,
-        get_max_allowed_canvas_coordinates)
 
+from space_game.canvas.coordinates import (Coordinate,
+                                           get_max_allowed_canvas_coordinates)
 from space_game.canvas.frame import draw_frame
 from space_game.spaceship.physics import Speed
 
