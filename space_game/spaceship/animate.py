@@ -1,14 +1,11 @@
 import asyncio
 import curses
 import itertools
-from typing import Any, Tuple
+from typing import Any
 
 from space_game.global_objects import spaceship
-from space_game.settings import (
-        DEBUG,
-        SPACESHIP_FRAMES_DIR,
-        SPEED,
-        SPEED_DEBUG)
+from space_game.settings import SPACESHIP_FRAMES_DIR
+from space_game.spaceship.physics import update_speed
 from space_game.utilities.async_tools import sleep_for
 from space_game.canvas.controls import read_controls
 from space_game.canvas.coordinates import get_middle_window_coordinates
@@ -21,27 +18,23 @@ from space_game.canvas.frame import (
 async def run_spaceship(canvas: Any) -> None:
     """Run spaceship."""
     row, column = get_middle_window_coordinates()
+    row_speed, column_speed = 0, 0
     while True:
         tmp_spaceship = spaceship
         # Read only arrow keys controls.
-        row_change, column_change = read_controls(canvas)[:2]
-        if DEBUG:
-            speed = SPEED_DEBUG
-        else:
-            speed = SPEED
-        row_change, column_change = change_speed(
-            increment=speed,
-            row=row_change,
-            column=column_change,
-        )
-
+        row_direction, column_direction = read_controls(canvas)[:2]
+        row_speed, column_speed = update_speed(
+                row_speed,
+                column_speed,
+                row_direction,
+                column_direction,
+                )
+        row, column = row + row_speed, column + column_speed
         row, column = calculate_frame_coordinates(
                 tmp_spaceship,
                 row,
                 column,
-                row_change,
-                column_change,
-            )
+                )
         draw_frame(canvas, row, column, tmp_spaceship)
         await sleep_for(1)
         draw_frame(canvas, row, column, tmp_spaceship, negative=True)
@@ -54,11 +47,6 @@ async def animate_spaceship() -> None:
     for state in itertools.cycle(animation_states):
         spaceship = state
         await sleep_for(2)
-
-
-def change_speed(increment: int, row: int, column: int) -> Tuple[int, int]:
-    """Change speed by increment and return updated row and column."""
-    return row * increment, column * increment
 
 
 async def fire(

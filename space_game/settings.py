@@ -15,8 +15,6 @@ DOWN_KEY_CODE = 258
 
 # Spaceship
 SPACESHIP_FRAMES_DIR = "space_game/static/spaceship"
-SPEED = 1
-SPEED_DEBUG = 10
 
 # Garbage
 GARBAGE_DIR = "space_game/static/garbage"

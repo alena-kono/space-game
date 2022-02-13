@@ -68,15 +68,12 @@ def get_frame_size(text: str) -> Tuple[int, int]:
 
 def calculate_frame_coordinates(
         frame: str,
-        start_row: int,
-        start_column: int,
-        row_change: int,
-        column_change: int,
+        row: Union[int, float],
+        column: Union[int, float],
 ) -> Tuple[int, int]:
-    """Calculate new frame coordinates based on its start and increment
+    """Calculate new frame coordinates based on its
     coordinates and coordinates of available canvas.
     """
-    row, column = start_row + row_change, start_column + column_change
     (
         min_row,
         min_column,
