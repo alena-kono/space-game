@@ -2,7 +2,7 @@ import asyncio
 from typing import Any, Generator, List, Optional, Tuple
 
 from space_game.canvas.coordinates import Coordinate, Coordinates
-from space_game.canvas.frame import draw_frame
+from space_game.canvas.frame import Size, Height, Width, draw_frame
 
 
 class Obstacle:
@@ -10,8 +10,8 @@ class Obstacle:
             self,
             row: Coordinate,
             column: Coordinate,
-            rows_size: int = 1,
-            columns_size: int = 1,
+            rows_size: Height = 1,
+            columns_size: Width = 1,
             uid: Optional[str] = None
     ) -> None:
         self.row = row
@@ -36,8 +36,8 @@ class Obstacle:
             self,
             obj_corner_row: Coordinate,
             obj_corner_column: Coordinate,
-            obj_size_rows: int = 1,
-            obj_size_columns: int = 1
+            obj_size_rows: Height = 1,
+            obj_size_columns: Width = 1
     ) -> bool:
         """Determine if collision has occured. Return True or False."""
         return has_collision(
@@ -49,8 +49,8 @@ class Obstacle:
 
 
 def _get_bounding_box_lines(
-        rows: int,
-        columns: int
+        rows: Height,
+        columns: Width,
 ) -> Generator[str, None, None]:
     yield " " + "-" * columns + " "
     for _ in range(rows):
@@ -78,8 +78,8 @@ async def show_obstacles(canvas: Any, obstacles: List[Obstacle]) -> None:
 def _is_point_inside(
         corner_row: Coordinate,
         corner_column: Coordinate,
-        size_rows: int,
-        size_columns: int,
+        size_rows: Height,
+        size_columns: Width,
         point_row: Coordinate,
         point_row_column: Coordinate,
 ) -> bool:
@@ -93,9 +93,9 @@ def _is_point_inside(
 
 def has_collision(
         obstacle_corner: Coordinates,
-        obstacle_size: Tuple[int, int],
+        obstacle_size: Size,
         obj_corner: Coordinates,
-        obj_size: Tuple[int, int] = (1, 1),
+        obj_size: Size = (1, 1),
 ) -> bool:
     """Determine if collision has occured. Return True or False."""
     opposite_obstacle_corner = (

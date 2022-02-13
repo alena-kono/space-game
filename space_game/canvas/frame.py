@@ -1,9 +1,13 @@
 import os
-from typing import Any, List, Tuple, Union
+from typing import Any, List, Tuple
 
 from space_game.canvas.coordinates import (Coordinate, Coordinates,
                                            get_canvas_available_coordinates)
 from space_game.utilities.read_file import read_file
+
+Height = int
+Width = int
+Size = Tuple[Height, Width]
 
 
 def draw_frame(
@@ -56,7 +60,7 @@ def get_frames_from_dir(dir_path: str) -> List[str]:
             ]
 
 
-def get_frame_size(text: str) -> Tuple[int, int]:
+def get_frame_size(text: str) -> Size:
     """Calculate size of multiline text fragment,
     return pair — number of rows and columns.
     """
@@ -68,8 +72,8 @@ def get_frame_size(text: str) -> Tuple[int, int]:
 
 def calculate_frame_coordinates(
         frame: str,
-        row: Union[int, float],
-        column: Union[int, float],
+        row: Coordinate,
+        column: Coordinate,
 ) -> Coordinates:
     """Calculate new frame coordinates based on its
     coordinates and coordinates of available canvas.
