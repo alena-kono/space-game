@@ -9,7 +9,7 @@ from space_game.utilities.async_tools import sleep_for
 
 async def fill_orbit_with_garbage(
     canvas: Any,
-    garbage_frames: List[str]
+    garbage_frames: List[str],
 ) -> None:
     """Fill orbit with garbage randomly."""
     while True:
