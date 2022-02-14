@@ -37,7 +37,7 @@ class Obstacle:
             obj_corner_row: Coordinate,
             obj_corner_column: Coordinate,
             obj_size_rows: Height = 1,
-            obj_size_columns: Width = 1
+            obj_size_columns: Width = 1,
     ) -> bool:
         """Determine if collision has occured. Return True or False."""
         return has_collision(
@@ -88,7 +88,7 @@ def _is_point_inside(
             corner_column <= point_row_column <
             corner_column + size_columns
             )
-    return rows_flag and columns_flag
+    return all((rows_flag, columns_flag))
 
 
 def has_collision(
@@ -98,6 +98,8 @@ def has_collision(
         obj_size: Size = (1, 1),
 ) -> bool:
     """Determine if collision has occured. Return True or False."""
+    opposite_obstacle_corner = Coordinate
+    opposite_obj_corner = Coordinate
     opposite_obstacle_corner = (
         obstacle_corner[0] + obstacle_size[0] - 1,
         obstacle_corner[1] + obstacle_size[1] - 1,
