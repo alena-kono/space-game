@@ -109,7 +109,7 @@ def get_middle_frame_column_coordinate(
     return start_column + frame_columns / 2
 
 
-def get_corner_coordinates_for_centered_frame(frame: str) -> Coordinates:
+def get_coordinates_for_centered_frame(frame: str) -> Coordinates:
     """Get corner coordinates for frame located in the middle of
     current canvas.
     """

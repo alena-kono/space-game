@@ -21,7 +21,7 @@ async def run_spaceship(canvas: Any) -> None:
     column_speed: Speed = 0
     spaceship_size = get_frame_size(spaceship)
     while True:
-        
+
         for obstacle in obstacles:
             if obstacle.has_collision(row, column, *spaceship_size):
                 space_objects.append(show_gameover(canvas))
