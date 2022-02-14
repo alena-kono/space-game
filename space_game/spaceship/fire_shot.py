@@ -10,14 +10,12 @@ from space_game.spaceship.physics import Speed
 
 async def fire(
     canvas: Any,
-    start_row: Coordinate,
-    start_column: Coordinate,
+    row: Coordinate,
+    column: Coordinate,
     rows_speed: Speed = -0.3,
     columns_speed: Speed = 0,
 ) -> None:
     """Display animation of gun shot, direction and speed can be specified."""
-    row, column = float(start_row), float(start_column)
-
     canvas.addstr(round(row), round(column), "*")
     await asyncio.sleep(0)
 
