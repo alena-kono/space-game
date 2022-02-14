@@ -9,7 +9,7 @@ from space_game.canvas.coordinates import (Coordinate,
 from space_game.canvas.frame import (calculate_frame_coordinates, draw_frame,
                                      get_frames_from_dir,
                                      get_middle_frame_column_coordinate)
-from space_game.global_objects import space_objects, spaceship
+from space_game.global_objects import obstacles, space_objects, spaceship
 from space_game.settings import SPACESHIP_FRAMES_DIR
 from space_game.spaceship.physics import Speed, update_speed
 from space_game.utilities.async_tools import sleep_for
@@ -84,6 +84,9 @@ async def fire(
     curses.beep()
 
     while 0 < row < max_row and 0 < column < max_column:
+        for obstacle in obstacles:
+            if obstacle.has_collision(row, column):
+                return None
         canvas.addstr(round(row), round(column), symbol)
         await asyncio.sleep(0)
         canvas.addstr(round(row), round(column), " ")
