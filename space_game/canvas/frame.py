@@ -2,7 +2,7 @@ import os
 from typing import Any, List, Tuple
 
 from space_game.canvas.coordinates import (Coordinate, Coordinates,
-                                           get_canvas_available_coordinates)
+                                           get_canvas_available_coordinates, get_middle_window_coordinates)
 from space_game.utilities.read_file import read_file
 
 Height = int
@@ -106,3 +106,15 @@ def get_middle_frame_column_coordinate(
     """
     frame_columns = get_frame_size(frame)[1]
     return start_column + frame_columns / 2
+
+
+def get_corner_coordinates_for_centered_frame(frame: str) -> Coordinates:
+    """Get corner coordinates for frame located in the middle of
+    current canvas.
+    """
+    middle_row, middle_column = get_middle_window_coordinates()
+    frame_height_rows, frame_width_columns = get_frame_size(frame)
+    return (
+            middle_row - frame_height_rows / 2,
+            middle_column - frame_width_columns / 2,
+            )

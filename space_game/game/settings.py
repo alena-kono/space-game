@@ -1,6 +1,9 @@
 # Debug mode
 DEBUG = True
 
+# Game
+GAMEOVER_FRAME_FILENAME = "space_game/static/game/game_over.txt"
+
 # Stars
 TIC_TIMEOUT = 0.1
 STAR_SYMBOLS = "+*.:"

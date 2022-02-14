@@ -3,10 +3,11 @@ from typing import Any
 
 from space_game.canvas.controls import read_controls
 from space_game.canvas.coordinates import get_middle_window_coordinates
-from space_game.canvas.frame import (calculate_frame_coordinates, draw_frame,
-                                     get_frames_from_dir,
-                                     get_middle_frame_column_coordinate)
-from space_game.game.globals import space_objects, spaceship
+from space_game.canvas.frame import (calculate_frame_coordinates, draw_frame, get_frame_size,
+                                     get_frames_from_dir, get_middle_frame_column_coordinate,
+                                     )
+from space_game.game.game_over import show_gameover
+from space_game.game.globals import space_objects, spaceship, obstacles
 from space_game.game.settings import FIRE_SHOT_SPEED_ABS, SPACESHIP_FRAMES_DIR
 from space_game.spaceship.fire_shot import fire
 from space_game.spaceship.physics import Speed, update_speed
@@ -18,7 +19,14 @@ async def run_spaceship(canvas: Any) -> None:
     row, column = get_middle_window_coordinates()
     row_speed: Speed = 0
     column_speed: Speed = 0
+    spaceship_size = get_frame_size(spaceship)
     while True:
+        
+        for obstacle in obstacles:
+            if obstacle.has_collision(row, column, *spaceship_size):
+                space_objects.append(show_gameover(canvas))
+                return None
+
         tmp_spaceship = spaceship
         row_direction, column_direction, fire_shot = read_controls(canvas)
         row_speed, column_speed = update_speed(
