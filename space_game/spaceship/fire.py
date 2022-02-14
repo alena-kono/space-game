@@ -3,7 +3,7 @@ import curses
 from typing import Any
 
 from space_game.canvas.coordinates import Coordinate
-from space_game.global_objects import obstacles
+from space_game.global_objects import obstacles, obstacles_in_last_collisions
 from space_game.spaceship.physics import Speed
 
 
@@ -35,9 +35,13 @@ async def fire(
     curses.beep()
 
     while 0 < row < max_row and 0 < column < max_column:
+
         for obstacle in obstacles:
             if obstacle.has_collision(row, column):
+                obstacles_in_last_collisions.append(obstacle)
+                obstacles.remove(obstacle)
                 return None
+
         canvas.addstr(round(row), round(column), symbol)
         await asyncio.sleep(0)
         canvas.addstr(round(row), round(column), " ")

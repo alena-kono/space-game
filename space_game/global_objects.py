@@ -6,3 +6,4 @@ space_objects: List[Coroutine[Any, Any, None]] = []
 spaceship: str = ""
 
 obstacles: List[Obstacle] = []
+obstacles_in_last_collisions: List[Obstacle] = []
