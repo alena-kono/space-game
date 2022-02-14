@@ -6,8 +6,8 @@ from space_game.canvas.coordinates import get_middle_window_coordinates
 from space_game.canvas.frame import (calculate_frame_coordinates, draw_frame,
                                      get_frames_from_dir,
                                      get_middle_frame_column_coordinate)
-from space_game.globals import space_objects, spaceship
-from space_game.settings import FIRE_SHOT_SPEED_ABS, SPACESHIP_FRAMES_DIR
+from space_game.game.globals import space_objects, spaceship
+from space_game.game.settings import FIRE_SHOT_SPEED_ABS, SPACESHIP_FRAMES_DIR
 from space_game.spaceship.fire_shot import fire
 from space_game.spaceship.physics import Speed, update_speed
 from space_game.utilities.async_tools import sleep_for

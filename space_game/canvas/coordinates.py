@@ -2,7 +2,7 @@ import curses
 import random
 from typing import Tuple, Union
 
-from space_game.settings import CANVAS_BORDER_SIZE
+from space_game.game.settings import CANVAS_BORDER_SIZE
 
 Coordinate = Union[int, float]
 Coordinates = Tuple[Coordinate, Coordinate]

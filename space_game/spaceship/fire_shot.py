@@ -3,8 +3,8 @@ import curses
 from typing import Any
 
 from space_game.canvas.coordinates import Coordinate
+from space_game.game.globals import obstacles, obstacles_in_last_collisions
 from space_game.garbage.explosion import explode
-from space_game.globals import obstacles, obstacles_in_last_collisions
 from space_game.spaceship.physics import Speed
 
 

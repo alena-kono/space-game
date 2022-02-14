@@ -1,7 +1,8 @@
 from typing import Any, Tuple
 
-from space_game.settings import (DOWN_KEY_CODE, LEFT_KEY_CODE, RIGHT_KEY_CODE,
-                                 SPACE_KEY_CODE, UP_KEY_CODE)
+from space_game.game.settings import (DOWN_KEY_CODE, LEFT_KEY_CODE,
+                                      RIGHT_KEY_CODE, SPACE_KEY_CODE,
+                                      UP_KEY_CODE)
 
 
 def read_controls(canvas: Any) -> Tuple[int, int, bool]:

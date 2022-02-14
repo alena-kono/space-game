@@ -4,7 +4,7 @@ from typing import Any
 from space_game.canvas.coordinates import (Coordinate,
                                            get_max_allowed_canvas_coordinates)
 from space_game.canvas.frame import draw_frame, get_frame_size
-from space_game.globals import obstacles, obstacles_in_last_collisions
+from space_game.game.globals import obstacles, obstacles_in_last_collisions
 from space_game.obstacles.obstacles import Obstacle
 from space_game.spaceship.physics import Speed
 
