@@ -3,6 +3,7 @@ import curses
 from typing import Any
 
 from space_game.canvas.coordinates import Coordinate
+from space_game.garbage.explosion import explode
 from space_game.global_objects import obstacles, obstacles_in_last_collisions
 from space_game.spaceship.physics import Speed
 
@@ -40,6 +41,7 @@ async def fire(
             if obstacle.has_collision(row, column):
                 obstacles_in_last_collisions.append(obstacle)
                 obstacles.remove(obstacle)
+                await explode(canvas, row, column)
                 return None
 
         canvas.addstr(round(row), round(column), symbol)

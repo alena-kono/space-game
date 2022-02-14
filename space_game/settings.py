@@ -20,6 +20,31 @@ FIRE_SHOT_SPEED_ABS = 2
 # Garbage
 GARBAGE_DIR = "space_game/static/garbage"
 GARBAGE_OCCURRENCE_FREQUENCY_TICS = 10
+EXPLOSION_FRAMES = [
+    """\
+           (_)
+       (  (   (  (
+      () (  (  )
+        ( )  ()
+    """,
+    """\
+           (_)
+       (  (   (
+         (  (  )
+          )  (
+    """,
+    """\
+            (
+          (   (
+         (     (
+          )  (
+    """,
+    """\
+            (
+              (
+            (
+    """,
+]
 
 # Canvas
 CURSOR_STATE = False
