@@ -1,16 +1,14 @@
-import asyncio
-import curses
 import itertools
 from typing import Any
 
 from space_game.canvas.controls import read_controls
-from space_game.canvas.coordinates import (Coordinate,
-                                           get_middle_window_coordinates)
+from space_game.canvas.coordinates import get_middle_window_coordinates
 from space_game.canvas.frame import (calculate_frame_coordinates, draw_frame,
                                      get_frames_from_dir,
                                      get_middle_frame_column_coordinate)
-from space_game.global_objects import obstacles, space_objects, spaceship
+from space_game.global_objects import space_objects, spaceship
 from space_game.settings import SPACESHIP_FRAMES_DIR
+from space_game.spaceship.fire import fire
 from space_game.spaceship.physics import Speed, update_speed
 from space_game.utilities.async_tools import sleep_for
 
@@ -54,41 +52,3 @@ async def animate_spaceship() -> None:
     for state in itertools.cycle(animation_states):
         spaceship = state
         await sleep_for(2)
-
-
-async def fire(
-    canvas: Any,
-    start_row: Coordinate,
-    start_column: Coordinate,
-    rows_speed: Speed = -0.3,
-    columns_speed: Speed = 0,
-) -> None:
-    """Display animation of gun shot, direction and speed can be specified."""
-    row, column = float(start_row), float(start_column)
-
-    canvas.addstr(round(row), round(column), "*")
-    await asyncio.sleep(0)
-
-    canvas.addstr(round(row), round(column), "O")
-    await asyncio.sleep(0)
-    canvas.addstr(round(row), round(column), " ")
-
-    row += rows_speed
-    column += columns_speed
-
-    symbol = "-" if columns_speed else "|"
-
-    rows, columns = canvas.getmaxyx()
-    max_row, max_column = rows - 1, columns - 1
-
-    curses.beep()
-
-    while 0 < row < max_row and 0 < column < max_column:
-        for obstacle in obstacles:
-            if obstacle.has_collision(row, column):
-                return None
-        canvas.addstr(round(row), round(column), symbol)
-        await asyncio.sleep(0)
-        canvas.addstr(round(row), round(column), " ")
-        row += rows_speed
-        column += columns_speed
