@@ -2,7 +2,7 @@ import asyncio
 from typing import Any, Generator, List, Optional, Tuple
 
 from space_game.canvas.coordinates import Coordinate, Coordinates
-from space_game.canvas.frame import Size, Height, Width, draw_frame
+from space_game.canvas.frame import Height, Size, Width, draw_frame
 
 
 class Obstacle:
