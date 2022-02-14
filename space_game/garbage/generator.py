@@ -2,8 +2,8 @@ import random
 from typing import Any, List
 
 from space_game.canvas.coordinates import get_random_coordinates
-from space_game.garbage.animate import fly_garbage
-from space_game.global_objects import space_objects
+from space_game.garbage.animation import fly_garbage
+from space_game.globals import space_objects
 from space_game.settings import GARBAGE_OCCURRENCE_FREQUENCY_TICS
 from space_game.utilities.async_tools import sleep_for
 

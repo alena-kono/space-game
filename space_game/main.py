@@ -4,11 +4,11 @@ from typing import Any
 
 from space_game.canvas.frame import get_frames_from_dir
 from space_game.garbage.generator import fill_orbit_with_garbage
-from space_game.global_objects import obstacles, space_objects
+from space_game.globals import obstacles, space_objects
 from space_game.obstacles.obstacles import show_obstacles
 from space_game.settings import (CURSOR_STATE, DEBUG, GARBAGE_DIR,
                                  STARS_DENSITY, TIC_TIMEOUT)
-from space_game.spaceship.animate import animate_spaceship, run_spaceship
+from space_game.spaceship.animation import animate_spaceship, run_spaceship
 from space_game.stars.generator import (calculate_stars_amount,
                                         generate_random_stars)
 

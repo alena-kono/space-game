@@ -4,7 +4,7 @@ from typing import Any, Coroutine, List
 from space_game.canvas.coordinates import (get_max_allowed_canvas_coordinates,
                                            get_random_coordinates)
 from space_game.settings import STAR_SYMBOLS
-from space_game.stars.blink import blink
+from space_game.stars.animation import blink
 
 
 def calculate_stars_amount(density: float = 0.05) -> int:

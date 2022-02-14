@@ -1,8 +1,8 @@
 import asyncio
 import curses
 from typing import Any
-from space_game.canvas.coordinates import Coordinate
 
+from space_game.canvas.coordinates import Coordinate
 from space_game.canvas.frame import draw_frame, get_frame_size
 from space_game.settings import EXPLOSION_FRAMES
 
