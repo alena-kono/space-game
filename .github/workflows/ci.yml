@@ -33,4 +33,4 @@ jobs:
         run: poetry run flake8 space_game/
 
       - name: Run mypy
-        run: poetry run mypy space_game/
+        run: poetry run mypy space_game/ --strict
