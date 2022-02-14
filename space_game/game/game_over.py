@@ -1,11 +1,10 @@
 import asyncio
 from typing import Any
+
 from space_game.canvas.coordinates import get_middle_window_coordinates
-
-
-from space_game.canvas.frame import draw_frame, get_corner_coordinates_for_centered_frame
+from space_game.canvas.frame import (draw_frame,
+                                     get_corner_coordinates_for_centered_frame)
 from space_game.game.settings import GAMEOVER_FRAME_FILENAME
-
 from space_game.utilities.read_file import read_file
 
 

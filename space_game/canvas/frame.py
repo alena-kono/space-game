@@ -2,7 +2,8 @@ import os
 from typing import Any, List, Tuple
 
 from space_game.canvas.coordinates import (Coordinate, Coordinates,
-                                           get_canvas_available_coordinates, get_middle_window_coordinates)
+                                           get_canvas_available_coordinates,
+                                           get_middle_window_coordinates)
 from space_game.utilities.read_file import read_file
 
 Height = int
