@@ -7,7 +7,7 @@ from space_game.canvas.frame import (calculate_frame_coordinates, draw_frame,
                                      get_frames_from_dir,
                                      get_middle_frame_column_coordinate)
 from space_game.global_objects import space_objects, spaceship
-from space_game.settings import SPACESHIP_FRAMES_DIR
+from space_game.settings import FIRE_SHOT_SPEED_ABS, SPACESHIP_FRAMES_DIR
 from space_game.spaceship.fire import fire
 from space_game.spaceship.physics import Speed, update_speed
 from space_game.utilities.async_tools import sleep_for
@@ -38,8 +38,9 @@ async def run_spaceship(canvas: Any) -> None:
                     column,
                     tmp_spaceship
                     )
-            space_objects.append(fire(canvas, row, fire_gun_column))
-
+            space_objects.append(
+                    fire(canvas, row, fire_gun_column, -FIRE_SHOT_SPEED_ABS)
+                    )
         draw_frame(canvas, row, column, tmp_spaceship)
         await sleep_for(1)
         draw_frame(canvas, row, column, tmp_spaceship, negative=True)

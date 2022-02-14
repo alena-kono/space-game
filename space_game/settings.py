@@ -15,9 +15,11 @@ DOWN_KEY_CODE = 258
 
 # Spaceship
 SPACESHIP_FRAMES_DIR = "space_game/static/spaceship"
+FIRE_SHOT_SPEED_ABS = 2
 
 # Garbage
 GARBAGE_DIR = "space_game/static/garbage"
+GARBAGE_OCCURRENCE_FREQUENCY_TICS = 10
 
 # Canvas
 CURSOR_STATE = False
