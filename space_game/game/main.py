@@ -31,7 +31,7 @@ def draw(canvas: Any) -> None:
         canvas=canvas,
     ))
     garbage_frames = get_frames_from_dir(GARBAGE_DIR)
- 
+
     space_objects.append(keep_countdown_of_years((GAME_START_YEAR)))
     space_objects.append(show_info_message(info_window))
 
