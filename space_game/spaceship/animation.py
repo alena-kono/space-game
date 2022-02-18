@@ -45,7 +45,7 @@ async def run_spaceship(canvas: Any) -> None:
                 column,
                 )
         year = get_current_year()
-        if fire_shot and year == PLASMA_GUN_START_YEAR:
+        if fire_shot and year >= PLASMA_GUN_START_YEAR:
             fire_gun_column = get_middle_frame_column_coordinate(
                     column,
                     tmp_spaceship
