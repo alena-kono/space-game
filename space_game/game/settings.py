@@ -1,8 +1,11 @@
 # Debug mode
-DEBUG = True
+DEBUG = False
 
 # Game
 GAMEOVER_FRAME_FILENAME = "space_game/static/game/game_over.txt"
+GAME_START_YEAR = 1957
+PLASMA_GUN_START_YEAR = 2020
+YEAR_CHANGE_FREQUENCY_TICS = 10
 
 # Stars
 TIC_TIMEOUT = 0.1
@@ -22,7 +25,6 @@ FIRE_SHOT_SPEED_ABS = 2
 
 # Garbage
 GARBAGE_DIR = "space_game/static/garbage"
-GARBAGE_OCCURRENCE_FREQUENCY_TICS = 10
 EXPLOSION_FRAMES = [
     """\
            (_)
@@ -52,3 +54,5 @@ EXPLOSION_FRAMES = [
 # Canvas
 CURSOR_STATE = False
 CANVAS_BORDER_SIZE = 1
+INFO_WINDOW_HEIGHT = 4
+INFO_MESSAGE_COORDINATES = (2, 2)
