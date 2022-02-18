@@ -6,9 +6,12 @@ from space_game.canvas.coordinates import get_middle_window_coordinates
 from space_game.canvas.frame import (calculate_frame_coordinates, draw_frame,
                                      get_frame_size, get_frames_from_dir,
                                      get_middle_frame_column_coordinate)
+from space_game.game.chronology import get_current_year
 from space_game.game.game_over import show_gameover
 from space_game.game.globals import obstacles, space_objects, spaceship
-from space_game.game.settings import FIRE_SHOT_SPEED_ABS, SPACESHIP_FRAMES_DIR
+from space_game.game.settings import (FIRE_SHOT_SPEED_ABS,
+                                      PLASMA_GUN_START_YEAR,
+                                      SPACESHIP_FRAMES_DIR)
 from space_game.spaceship.fire_shot import fire
 from space_game.spaceship.physics import Speed, update_speed
 from space_game.utilities.async_tools import sleep_for
@@ -41,7 +44,8 @@ async def run_spaceship(canvas: Any) -> None:
                 row,
                 column,
                 )
-        if fire_shot:
+        year = get_current_year()
+        if fire_shot and year == PLASMA_GUN_START_YEAR:
             fire_gun_column = get_middle_frame_column_coordinate(
                     column,
                     tmp_spaceship
