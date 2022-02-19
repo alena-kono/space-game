@@ -21,7 +21,8 @@ async def fill_orbit_with_garbage(canvas: Any) -> None:
         if current_year_delay_tics:
             random_frame = random.choice(garbage_frames)
             random_column = get_random_coordinates()[1]
+            random_speed = random.uniform(0.0, 1.5)
             game_objects.append(
-                fly_garbage(canvas, random_column, random_frame)
+                fly_garbage(canvas, random_column, random_frame, random_speed)
             )
         await sleep_for(current_year_delay_tics or 1)
