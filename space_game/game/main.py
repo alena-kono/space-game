@@ -2,13 +2,12 @@ import curses
 import time
 from typing import Any
 
-from space_game.canvas.frame import get_frames_from_dir
 from space_game.canvas.info_window import get_info_window
 from space_game.game.chronology import keep_countdown_of_years
 from space_game.game.globals import obstacles, space_objects
 from space_game.game.scenario import show_info_message
 from space_game.game.settings import (CURSOR_STATE, DEBUG, GAME_START_YEAR,
-                                      GARBAGE_DIR, STARS_DENSITY, TIC_TIMEOUT)
+                                      STARS_DENSITY, TIC_TIMEOUT)
 from space_game.garbage.generator import fill_orbit_with_garbage
 from space_game.obstacles.obstacles import show_obstacles
 from space_game.spaceship.animation import animate_spaceship, run_spaceship
@@ -30,14 +29,13 @@ def draw(canvas: Any) -> None:
         stars_count=stars_count,
         canvas=canvas,
     ))
-    garbage_frames = get_frames_from_dir(GARBAGE_DIR)
 
     space_objects.append(keep_countdown_of_years((GAME_START_YEAR)))
     space_objects.append(show_info_message(info_window))
 
     space_objects.append(animate_spaceship())
     space_objects.append(run_spaceship(canvas))
-    space_objects.append(fill_orbit_with_garbage(canvas, garbage_frames))
+    space_objects.append(fill_orbit_with_garbage(canvas))
     if DEBUG:
         space_objects.append(show_obstacles(canvas, obstacles))
 
