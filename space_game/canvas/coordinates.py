@@ -9,16 +9,6 @@ Coordinates = Tuple[Coordinate, Coordinate]
 RectangleCoordinates = Tuple[Coordinate, Coordinate, Coordinate, Coordinate]
 
 
-def _get_canvas_size(canvas: Optional[Any] = None) -> Coordinates:
-    """Get height (max row value) and width
-    (max column value) of the current canvas.
-    """
-    if not canvas:
-        return curses.initscr().getmaxyx()
-    max_coordinates: Coordinates = canvas.getmaxyx()
-    return max_coordinates
-
-
 def get_max_allowed_canvas_coordinates(
         canvas: Optional[Any] = None
 ) -> Coordinates:
@@ -38,18 +28,6 @@ def get_middle_window_coordinates(
     """Get row and column coordinates of the current canvas midpoint."""
     max_row, max_column = _get_canvas_size(canvas)
     return max_row // 2, max_column // 2
-
-
-def _get_canvas_coordinates(
-        canvas: Optional[Any] = None
-) -> RectangleCoordinates:
-    """Get current canvas min and max coordinates and return them
-    as a tuple: (min_row, min_column, max_row, max_column).
-    Coordinates include canvas border.
-    """
-    min_row, min_column = 0, 0
-    max_row, max_column = _get_canvas_size(canvas)
-    return min_row, min_column, max_row, max_column
 
 
 def get_canvas_available_coordinates(
@@ -77,3 +55,25 @@ def get_random_coordinates(canvas: Optional[Any] = None) -> Coordinates:
             random.randint(CANVAS_BORDER_SIZE, int(max_row)),
             random.randint(CANVAS_BORDER_SIZE, int(max_column)),
             )
+
+
+def _get_canvas_size(canvas: Optional[Any] = None) -> Coordinates:
+    """Get height (max row value) and width
+    (max column value) of the current canvas.
+    """
+    if not canvas:
+        return curses.initscr().getmaxyx()
+    max_coordinates: Coordinates = canvas.getmaxyx()
+    return max_coordinates
+
+
+def _get_canvas_coordinates(
+        canvas: Optional[Any] = None
+) -> RectangleCoordinates:
+    """Get current canvas min and max coordinates and return them
+    as a tuple: (min_row, min_column, max_row, max_column).
+    Coordinates include canvas border.
+    """
+    min_row, min_column = 0, 0
+    max_row, max_column = _get_canvas_size(canvas)
+    return min_row, min_column, max_row, max_column

@@ -4,49 +4,6 @@ from typing import Tuple, Union
 Speed = Union[int, float]
 
 
-def _limit(
-    value: Union[int, float],
-    min_value: Union[int, float],
-    max_value: Union[int, float],
-) -> Union[int, float]:
-    """Limit value by min_value and max_value."""
-    if value < min_value:
-        return min_value
-    if value > max_value:
-        return max_value
-    return value
-
-
-def _apply_acceleration(
-    speed: Speed,
-    speed_limit: Speed,
-    forward: bool = True,
-) -> Speed:
-    """Change speed — accelerate or brake — according
-    to force direction.
-    """
-    speed_limit = abs(speed_limit)
-
-    speed_fraction = speed / speed_limit
-
-    # If the spaceship is standing still, then accelerate abruptly.
-    # If the spaceship is running fastly, then accelerate slowly.
-    delta = math.cos(speed_fraction) * 0.75
-
-    if forward:
-        result_speed = speed + delta
-    else:
-        result_speed = speed - delta
-
-    result_speed = _limit(result_speed, -speed_limit, speed_limit)
-
-    # If speed is close to zero, then the spaceship is stopped.
-    if abs(result_speed) < 0.1:
-        result_speed = 0
-
-    return result_speed
-
-
 def update_speed(
     row_speed: Speed,
     column_speed: Speed,
@@ -105,3 +62,46 @@ def update_speed(
                 columns_direction > 0,
             )
     return row_speed, column_speed
+
+
+def _limit(
+    value: Union[int, float],
+    min_value: Union[int, float],
+    max_value: Union[int, float],
+) -> Union[int, float]:
+    """Limit value by min_value and max_value."""
+    if value < min_value:
+        return min_value
+    if value > max_value:
+        return max_value
+    return value
+
+
+def _apply_acceleration(
+    speed: Speed,
+    speed_limit: Speed,
+    forward: bool = True,
+) -> Speed:
+    """Change speed — accelerate or brake — according
+    to force direction.
+    """
+    speed_limit = abs(speed_limit)
+
+    speed_fraction = speed / speed_limit
+
+    # If the spaceship is standing still, then accelerate abruptly.
+    # If the spaceship is running fastly, then accelerate slowly.
+    delta = math.cos(speed_fraction) * 0.75
+
+    if forward:
+        result_speed = speed + delta
+    else:
+        result_speed = speed - delta
+
+    result_speed = _limit(result_speed, -speed_limit, speed_limit)
+
+    # If speed is close to zero, then the spaceship is stopped.
+    if abs(result_speed) < 0.1:
+        result_speed = 0
+
+    return result_speed
