@@ -1,4 +1,5 @@
 from space_game.game.chronology import get_current_year
+from space_game.game.game_over import is_game_over
 from space_game.game.globals import score
 from space_game.game.settings import (SCORE_PER_TIME,
                                       SCORING_IN_YEARS_DIVISIBLE_BY_VALUE,
@@ -12,6 +13,8 @@ async def keep_track_of_score() -> None:
     """
     global score
     while True:
+        if is_game_over():
+            return None
         year = get_current_year()
         await sleep_for(YEAR_CHANGE_FREQUENCY_TICS)
         if year % SCORING_IN_YEARS_DIVISIBLE_BY_VALUE == 0:

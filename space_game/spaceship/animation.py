@@ -7,7 +7,7 @@ from space_game.canvas.frame import (calculate_frame_coordinates, draw_frame,
                                      get_frame_size, get_frames_from_dir,
                                      get_middle_frame_column_coordinate)
 from space_game.game.chronology import get_current_year
-from space_game.game.game_over import show_gameover
+from space_game.game.game_over import activate_game_over, show_gameover
 from space_game.game.globals import game_objects, obstacles, spaceship
 from space_game.game.settings import (FIRE_SHOT_SPEED_ABS,
                                       PLASMA_GUN_START_YEAR,
@@ -28,6 +28,7 @@ async def run_spaceship(canvas: Any) -> None:
         for obstacle in obstacles:
             if obstacle.has_collision(row, column, *spaceship_size):
                 game_objects.append(show_gameover(canvas))
+                activate_game_over()
                 return None
 
         tmp_spaceship = spaceship

@@ -13,3 +13,5 @@ obstacles_in_last_collisions: List[Obstacle] = []
 year: int = 0
 
 score: int = 0
+
+game_over = False
