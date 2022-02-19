@@ -6,6 +6,9 @@ Simple console game where you can fly through space by controlling your own spac
 ## Purpose of this project
 This project is an educational one to get familiar with async Python.
 
+## Demo
+![Demo](demo.gif)
+
 ## Requirements
 It is being developed and running on `Python 3.9`.
 No external dependencies are needed to launch and play the game.
