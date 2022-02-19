@@ -11,3 +11,5 @@ obstacles: List[Obstacle] = []
 obstacles_in_last_collisions: List[Obstacle] = []
 
 year: int = 0
+
+score: int = 0

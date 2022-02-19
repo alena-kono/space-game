@@ -4,6 +4,8 @@ from typing import Any
 
 from space_game.canvas.coordinates import Coordinate
 from space_game.game.globals import obstacles, obstacles_in_last_collisions
+from space_game.game.score import add_score
+from space_game.game.settings import SCORE_FOR_PRECISE_SHOT
 from space_game.garbage.explosion import explode
 from space_game.spaceship.physics import Speed
 
@@ -16,6 +18,7 @@ async def fire(
     columns_speed: Speed = 0,
 ) -> None:
     """Display animation of gun shot, direction and speed can be specified."""
+    global score
     canvas.addstr(round(row), round(column), "*")
     await asyncio.sleep(0)
 
@@ -37,6 +40,7 @@ async def fire(
 
         for obstacle in obstacles:
             if obstacle.has_collision(row, column):
+                add_score(SCORE_FOR_PRECISE_SHOT)
                 obstacles_in_last_collisions.append(obstacle)
                 obstacles.remove(obstacle)
                 await explode(canvas, row, column)

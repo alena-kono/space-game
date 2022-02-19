@@ -6,6 +6,7 @@ from space_game.canvas.info_window import get_info_window
 from space_game.game.chronology import keep_countdown_of_years
 from space_game.game.globals import game_objects, obstacles
 from space_game.game.scenario import show_info_message
+from space_game.game.score import keep_track_of_score
 from space_game.game.settings import (CURSOR_STATE, DEBUG, GAME_START_YEAR,
                                       STARS_DENSITY, TIC_TIMEOUT)
 from space_game.garbage.generator import fill_orbit_with_garbage
@@ -29,9 +30,9 @@ def draw(canvas: Any) -> None:
         stars_count=stars_count,
         canvas=canvas,
     ))
-
     game_objects.append(keep_countdown_of_years(GAME_START_YEAR))
     game_objects.append(show_info_message(info_window))
+    game_objects.append(keep_track_of_score())
 
     game_objects.append(animate_spaceship())
     game_objects.append(run_spaceship(canvas))

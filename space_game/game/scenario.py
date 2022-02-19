@@ -3,6 +3,7 @@ from typing import Any, Optional
 
 from space_game.canvas.frame import draw_frame
 from space_game.game.chronology import get_current_year
+from space_game.game.score import get_current_score
 from space_game.game.settings import INFO_MESSAGE_COORDINATES
 
 PHRASES = {
@@ -36,14 +37,16 @@ def get_garbage_delay_tics(year: int) -> Optional[int]:
 
 
 async def show_info_message(canvas: Any) -> None:
-    """Show info message - year and the related event."""
+    """Show info message - year, the related event and score."""
     row, column = INFO_MESSAGE_COORDINATES
-    message_template = "Year {year}\n{text}"
+    message_template = "Year {year}\n{text}\nScore {score}"
     while True:
         year = get_current_year()
+        score = get_current_score()
         text = message_template.format(
                 year=year,
-                text=PHRASES.get(year, "")
+                text=PHRASES.get(year, ""),
+                score=score,
                 )
         draw_frame(canvas, row, column, text)
         await asyncio.sleep(0)
