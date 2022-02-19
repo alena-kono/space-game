@@ -4,7 +4,7 @@ from typing import Any
 
 from space_game.canvas.info_window import get_info_window
 from space_game.game.chronology import keep_countdown_of_years
-from space_game.game.globals import obstacles, space_objects
+from space_game.game.globals import game_objects, obstacles
 from space_game.game.scenario import show_info_message
 from space_game.game.settings import (CURSOR_STATE, DEBUG, GAME_START_YEAR,
                                       STARS_DENSITY, TIC_TIMEOUT)
@@ -25,33 +25,33 @@ def draw(canvas: Any) -> None:
 
     stars_count = calculate_stars_amount(density=STARS_DENSITY)
 
-    space_objects.extend(generate_random_stars(
+    game_objects.extend(generate_random_stars(
         stars_count=stars_count,
         canvas=canvas,
     ))
 
-    space_objects.append(keep_countdown_of_years((GAME_START_YEAR)))
-    space_objects.append(show_info_message(info_window))
+    game_objects.append(keep_countdown_of_years(GAME_START_YEAR))
+    game_objects.append(show_info_message(info_window))
 
-    space_objects.append(animate_spaceship())
-    space_objects.append(run_spaceship(canvas))
-    space_objects.append(fill_orbit_with_garbage(canvas))
+    game_objects.append(animate_spaceship())
+    game_objects.append(run_spaceship(canvas))
+    game_objects.append(fill_orbit_with_garbage(canvas))
     if DEBUG:
-        space_objects.append(show_obstacles(canvas, obstacles))
+        game_objects.append(show_obstacles(canvas, obstacles))
 
     while True:
         exhausted_coroutines = []
-        for space_object in space_objects:
+        for game_object in game_objects:
             try:
-                space_object.send(None)
+                game_object.send(None)
             except StopIteration:
-                exhausted_coroutines.append(space_object)
+                exhausted_coroutines.append(game_object)
         canvas.border()
         canvas.refresh()
         time.sleep(TIC_TIMEOUT)
 
         for coroutine in exhausted_coroutines:
-            space_objects.remove(coroutine)
+            game_objects.remove(coroutine)
 
 
 def main() -> None:
