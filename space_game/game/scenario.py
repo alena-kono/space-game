@@ -13,8 +13,8 @@ PHRASES = {
     1969: "Armstrong got on the moon!",
     1971: "First orbital space station Salute-1",
     1981: "Flight of the Shuttle Columbia",
-    1998: 'ISS start building',
-    2011: 'Messenger launch to Mercury',
+    1998: "ISS start building",
+    2011: "Messenger launch to Mercury",
     2020: "Take the plasma gun! Shoot the garbage!",
 }
 
